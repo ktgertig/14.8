@@ -1,15 +1,12 @@
 App = React.createClass({
     getInitialState() {
-        return {loading: false, searchingText: '', gif: {}
-        };
+        return {loading: false, searchingText: '', gif: {}};
     },
 
     handleSearch: function(searchingText) {
-        this.setState({loading: true
-        });
+        this.setState({loading: true});
         this.getGif(searchingText, function(gif) {
-            this.setState({loading: false, gif: gif, searchingText: searchingText
-            });
+            this.setState({loading: false, gif: gif, searchingText: searchingText});
         }.bind(this));
     },
 
@@ -24,8 +21,7 @@ App = React.createClass({
         xhr.onload = function() {
             if (xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText).data;
-                var gif = {url: data.fixed_width_downsampled_url, sourceUrl: data.url
-                };
+                var gif = {url: data.fixed_width_downsampled_url, sourceUrl: data.url};
                 callback(gif);
             }
         };
@@ -46,4 +42,3 @@ App = React.createClass({
         );
     }
 });
-
